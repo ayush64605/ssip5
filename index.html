@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Details Page</title>
+</head>
+<body>
+    <h1>Details from QR Code</h1>
+    <div id="details"></div>
+
+    <h2>QR Code for This Page:</h2>
+    <div id="qrcode"></div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get("name");
+        const district = urlParams.get("district");
+        const city = urlParams.get("city");
+        const state = urlParams.get("state");
+
+        document.getElementById("details").textContent = `Name: ${name}, District: ${district}, City: ${city}, State: ${state}`;
+
+        // Generate a QR code for the second page
+        const qrLink = window.location.href;
+        const qrcode = new QRCode("qrcode", {
+            text: qrLink,
+            width: 128,
+            height: 128
+        });
+    </script>
+</body>
+</html>
